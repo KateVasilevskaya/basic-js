@@ -24,7 +24,6 @@ const { NotImplementedError } = require("../extensions/index.js");
  * ]
  */
 function minesweeper(matrix) {
-  console.log(matrix);
   let result = [];
   for (let i = 0; i < matrix.length; i++) {
     for (let j = 0; j < matrix[i].length; j++) {
@@ -35,16 +34,10 @@ function minesweeper(matrix) {
       }
     }
   }
-  console.log(result);
+
   return result;
 }
 
 module.exports = {
   minesweeper,
 };
-
-minesweeper([
-  [true, false, false],
-  [false, true, false],
-  [false, false, false],
-]);

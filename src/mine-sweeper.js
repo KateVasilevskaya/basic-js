@@ -26,13 +26,38 @@ const { NotImplementedError } = require("../extensions/index.js");
 function minesweeper(matrix) {
   let result = [];
   for (let i = 0; i < matrix.length; i++) {
+    let row = [];
     for (let j = 0; j < matrix[i].length; j++) {
-      if (matrix[i][j] == true) {
-        return result.push(1);
-      } else if (matrix[i][j] == false) {
-        return result.push(2);
+      if (matrix[i][j]) {
+        row.push(1);
+      } else {
+        let elem = 0;
+        if (matrix[i - 1]) {
+          matrix[i - 1][j - 1]
+            ? elem++
+            : matrix[i - 1][j]
+            ? elem++
+            : matrix[i - 1][j + 1]
+            ? elem++
+            : elem;
+        }
+
+        if (matrix[i + 1]) {
+          matrix[i + 1][j - 1]
+            ? elem++
+            : matrix[i + 1][j]
+            ? elem++
+            : matrix[i + 1][j + 1]
+            ? elem++
+            : elem;
+        }
+
+        matrix[i][j - 1] ? elem++ : matrix[i][j + 1] ? elem++ : elem;
+
+        row.push(elem);
       }
     }
+    result.push(row);
   }
 
   return result;
